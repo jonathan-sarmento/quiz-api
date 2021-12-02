@@ -26,6 +26,6 @@ jobs:
     # Push the Docker image to Heroku Container Registry
     - name: Publish
       run: |
-        cd ./
+        cd ./src/QuizApi
         heroku container:push web -a $APP_NAME
         heroku container:release web -a $APP_NAME

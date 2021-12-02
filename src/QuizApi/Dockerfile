@@ -4,18 +4,19 @@
 #For more information, please see https://aka.ms/containercompat
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
-WORKDIR /app
+WORKDIR ./src/QuizApi
 
 # Copy csproj and restore as distinct layers
 COPY *.csproj ./
 RUN dotnet restore
 
 # Copy everything else and build
-COPY ../engine/examples ./
+COPY ./*.csproj ./
+COPY . .
 RUN dotnet publish -c Release -o out
 
 # Build runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:6.0
-WORKDIR /app
-COPY --from=build-env /app/out .
+FROM mcr.microsoft.com/dotnet/aspnet:5.0
+WORKDIR ./src
+COPY --from=build ./src .
 CMD ASPNETCORE_URLS=http://*:$PORT dotnet QuizApi.dll
