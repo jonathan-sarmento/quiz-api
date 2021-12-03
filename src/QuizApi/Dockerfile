@@ -19,5 +19,5 @@ RUN dotnet publish -c Release -o out
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:5.0
 WORKDIR ./src
-COPY --from=build ./src .
+COPY --from=build ./src/QuizApi/out .
 CMD ASPNETCORE_URLS=http://*:$PORT dotnet QuizApi.dll
