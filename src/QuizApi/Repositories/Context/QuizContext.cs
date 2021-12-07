@@ -11,5 +11,9 @@ namespace QuizApi.Repositories.Context
             => optionsBuilder.UseNpgsql("Host=kesavan.db.elephantsql.com;Database=dprpjajp;Username=dprpjajp;Password=O7v0IwisROmwT_o3ztIzsnEvIMySevP_");
 
         public DbSet<Usuario> usuarios { get; set; }
+
+        public DbSet<Pergunta> perguntas { get; set; }
+
+        public DbSet<Alternativa> alternativas { get; set; }
     }
 }
