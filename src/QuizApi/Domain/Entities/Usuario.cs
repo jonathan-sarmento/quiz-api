@@ -7,5 +7,8 @@ namespace QuizApi.Domain.Entities
         public string nome { get; set; }
 
         public string linkImagem { get; set; }
+
+        public int pontuacao { get; set; }
+
     }
 }
