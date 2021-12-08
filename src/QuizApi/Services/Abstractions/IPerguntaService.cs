@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace QuizApi.Services
+namespace QuizApi.Services.Abstractions
 {
     public interface IPerguntaService
     {
