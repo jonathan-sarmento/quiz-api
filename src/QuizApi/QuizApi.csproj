@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <Folder Include="Domain\Dtos\" />
-    <Folder Include="Repositories\Abstractions\" />
     <Folder Include="Services\Abstractions\" />
     <Folder Include="Services\Validators\" />
   </ItemGroup>
