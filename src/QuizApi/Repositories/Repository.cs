@@ -24,9 +24,8 @@ namespace QuizApi.Repositories
             await _context.SaveChangesAsync(true);
         }
 
-        public virtual async Task<bool> ExistsAsync(int id) =>
-      await _dbSet.AsNoTracking().AnyAsync(x => Equals(x.Id, id));
-
+        public virtual async Task<bool> ExistsAsync(int id) 
+            => await _dbSet.AsNoTracking().AnyAsync(x => Equals(x.Id, id));
 
         public virtual async Task InsertAsync(TEntity entity)
         {

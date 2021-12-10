@@ -7,6 +7,7 @@ namespace QuizApi.Controllers
     [ApiController]
     public class PerguntasController : ApiBaseController
     {
-        public IActionResult Index() => ApiOk("Bem vindo ao quiz-api!");
+        public IActionResult Index() 
+            => ApiOk("Bem vindo ao quiz-api!");
     }
 }

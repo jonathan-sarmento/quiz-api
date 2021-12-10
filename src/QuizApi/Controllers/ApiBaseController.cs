@@ -8,16 +8,16 @@ namespace QuizApi.Controllers
     [ApiController]
     public class ApiBaseController : ControllerBase
     {
-        protected OkObjectResult ApiOk<T>(T Results) =>
-            Ok(CustomResponse("", true, Results));
-        protected OkObjectResult ApiOk(string Message = "") =>
-            Ok(CustomResponse(Message, true));
-        protected CreatedResult ApiCreated(string Message = "") =>
-            Created("", CustomResponse(Message, true));
-        protected NotFoundObjectResult ApiNotFound(string Message = "") =>
-            NotFound(CustomResponse(Message, false));
-        protected BadRequestObjectResult ApiBadRequest<T>(T results, string Message = "") =>
-            BadRequest(CustomResponse(Message, false, results));
+        protected OkObjectResult ApiOk<T>(T Results) 
+            => Ok(CustomResponse("", true, Results));
+        protected OkObjectResult ApiOk(string Message = "") 
+            => Ok(CustomResponse(Message, true));
+        protected CreatedResult ApiCreated(string Message = "") 
+            => Created("", CustomResponse(Message, true));
+        protected NotFoundObjectResult ApiNotFound(string Message = "") 
+            => NotFound(CustomResponse(Message, false));
+        protected BadRequestObjectResult ApiBadRequest<T>(T results, string Message = "") 
+            => BadRequest(CustomResponse(Message, false, results));
 
 
         #region Metodos privados
