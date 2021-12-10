@@ -1,4 +1,5 @@
 ﻿using QuizApi.Domain.Entities;
+using QuizApi.Domain.Enums;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -6,10 +7,10 @@ namespace QuizApi.Services.Abstractions
 {
     public interface IPerguntaService
     {
-        Task<List<Pergunta>> getAllAsync();
+        List<Pergunta> getAllAsync();
 
         Task<Pergunta> getByIdAsync(int id);
 
-        Task<List<Pergunta>> getByTemaAsync(string tema);
+        List<Pergunta> getByTemaAsync(Tema tema);
     }
 }

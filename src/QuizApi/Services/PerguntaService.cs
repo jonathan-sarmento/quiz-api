@@ -1,25 +1,24 @@
 ﻿using QuizApi.Domain.Entities;
+using QuizApi.Domain.Enums;
+using QuizApi.Repositories.Abstractions;
 using QuizApi.Services.Abstractions;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace QuizApi.Services
 {
     public class PerguntaService : IPerguntaService
     {
-        public async Task<List<Pergunta>> getAllAsync()
-        {
-            throw new System.NotImplementedException();
-        }
+        private readonly IPerguntaRepository _repository;
+        public PerguntaService(IPerguntaRepository repository) => _repository = repository;
+        public List<Pergunta> getAllAsync() 
+            => _repository.SelectAll().ToList();
 
         public async Task<Pergunta> getByIdAsync(int id)
-        {
-            throw new System.NotImplementedException();
-        }
+            => await _repository.SelectByIdAsync(id);
 
-        public async Task<List<Pergunta>> getByTemaAsync(string tema)
-        {
-            throw new System.NotImplementedException();
-        }
+        public List<Pergunta> getByTemaAsync(Tema tema)
+            => _repository.SelectAll().Where(x => x.Tema == tema).ToList();
     }
 }
