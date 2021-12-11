@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using QuizApi.Services.Abstractions;
+using System.Threading.Tasks;
 
 namespace QuizApi.Controllers
 {
@@ -7,7 +9,12 @@ namespace QuizApi.Controllers
     [ApiController]
     public class PerguntasController : ApiBaseController
     {
-        public IActionResult Index() 
-            => ApiOk("Bem vindo ao quiz-api!");
+        IPerguntaService _perguntasService;
+        public PerguntasController(IPerguntaService perguntaService)
+        {
+            _perguntasService = perguntaService;
+        }
+        public async Task<IActionResult> Index() 
+            => ApiOk(await _perguntasService.getAllAsync());
     }
 }

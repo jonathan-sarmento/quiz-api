@@ -1,4 +1,5 @@
-﻿using QuizApi.Domain.Entities;
+﻿using QuizApi.Domain.Dtos;
+using QuizApi.Domain.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -6,10 +7,10 @@ namespace QuizApi.Services.Abstractions
 {
     public interface IPerguntaService
     {
-        Task<List<Pergunta>> getAllAsync();
+        Task<ResultadoDto<string, dynamic>> getAllAsync();
 
-        Task<Pergunta> getByIdAsync(int id);
+        Task<ResultadoDto<string, dynamic>> getByIdAsync(int id);
 
-        Task<List<Pergunta>> getByTemaAsync(string tema);
+        Task<ResultadoDto<string, dynamic>> getByTemaAsync(string tema);
     }
 }

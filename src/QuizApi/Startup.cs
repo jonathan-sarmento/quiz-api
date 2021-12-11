@@ -11,6 +11,8 @@ using Microsoft.OpenApi.Models;
 using QuizApi.Repositories;
 using QuizApi.Repositories.Abstractions;
 using QuizApi.Repositories.Context;
+using QuizApi.Services;
+using QuizApi.Services.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,8 +37,8 @@ namespace QuizApi
             services.AddDbContext<QuizContext>(options => options.UseNpgsql(Configuration.GetConnectionString("quiz_api_db")));
             
             // Adicionar o IoC
-            services.AddScoped<IPerguntaRepository, PerguntaRepository>();
-
+            services.AddTransient<IPerguntaRepository, PerguntaRepository>();
+            services.AddTransient<IPerguntaService, PerguntaService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "QuizApi", Version = "v1" });
