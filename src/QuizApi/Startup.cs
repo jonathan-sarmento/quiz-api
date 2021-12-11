@@ -37,8 +37,8 @@ namespace QuizApi
             services.AddDbContext<QuizContext>(options => options.UseNpgsql(Configuration.GetConnectionString("quiz_api_db")));
             
             // Adicionar o IoC
-            services.AddTransient<IPerguntaRepository, PerguntaRepository>();
-            services.AddTransient<IPerguntaService, PerguntaService>();
+            services.AddScoped<IPerguntaRepository, PerguntaRepository>();
+            services.AddScoped<IPerguntaService, PerguntaService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "QuizApi", Version = "v1" });

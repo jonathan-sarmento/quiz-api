@@ -9,11 +9,13 @@ namespace QuizApi.Controllers
     [ApiController]
     public class PerguntasController : ApiBaseController
     {
-        IPerguntaService _perguntasService;
+        private readonly IPerguntaService _perguntasService;
         public PerguntasController(IPerguntaService perguntaService)
         {
             _perguntasService = perguntaService;
         }
+
+        [HttpGet]
         public async Task<IActionResult> Index() 
             => ApiOk(await _perguntasService.getAllAsync());
     }

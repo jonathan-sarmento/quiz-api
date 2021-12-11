@@ -2,6 +2,7 @@
 using QuizApi.Domain.Dtos;
 using QuizApi.Domain.Entities;
 using QuizApi.Repositories;
+using QuizApi.Repositories.Abstractions;
 using QuizApi.Services.Abstractions;
 using System;
 using System.Collections.Generic;
@@ -12,16 +13,16 @@ namespace QuizApi.Services
 {
     public class PerguntaService : IPerguntaService
     {
-        PerguntaRepository _perguntaRepo;
-        public PerguntaService(PerguntaRepository perguntaRepo)
+        private readonly IPerguntaRepository _repository;
+        public PerguntaService(IPerguntaRepository repository)
         {
-            _perguntaRepo = perguntaRepo;
+            _repository = repository;
         }
         public async Task<ResultadoDto<string, dynamic>> getAllAsync()
         {
             try
             {
-                List<Pergunta> perguntas = await _perguntaRepo.SelectAll().ToListAsync();
+                List<Pergunta> perguntas = await _repository.SelectAll().ToListAsync();
                 ResultadoDto<string, dynamic> resultados = new ResultadoDto<string, dynamic>();
                 foreach(Pergunta pergunta in perguntas)
                 {
