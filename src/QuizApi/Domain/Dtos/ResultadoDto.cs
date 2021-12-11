@@ -3,8 +3,12 @@ using System.Collections.Generic;
 
 namespace QuizApi.Domain.Dtos
 {
-    public class ResultadoDto<T, V>
+    public class ResultadoDto
     {
-        public IDictionary<T, V> Resultados { get; set; }
+        public int Id { get; set; }
+
+        public string Enunciado { get; set; }
+
+        public string Tema { get; set; }
     }
 }

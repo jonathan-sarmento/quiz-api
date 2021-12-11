@@ -18,35 +18,32 @@ namespace QuizApi.Services
         {
             _repository = repository;
         }
-        public async Task<ResultadoDto<string, dynamic>> getAllAsync()
+        public async Task<List<ResultadoDto>> getAllAsync()
         {
             try
             {
                 List<Pergunta> perguntas = await _repository.SelectAll().ToListAsync();
-                ResultadoDto<string, dynamic> resultados = new ResultadoDto<string, dynamic>();
-                foreach(Pergunta pergunta in perguntas)
+                List<ResultadoDto> resultados = new List<ResultadoDto>();
+                perguntas.ForEach(pergunta => resultados.Add(new ResultadoDto
                 {
-                    resultados.Resultados.Add("Id", pergunta.Id);
-                    resultados.Resultados.Add("Enunciado", pergunta.Enunciado);
-                    resultados.Resultados.Add("Tema", pergunta.Tema.ToString());
-                }
+                    Tema = pergunta.Tema.ToString(),
+                    Id = pergunta.Id,
+                    Enunciado = pergunta.Enunciado
+                }));
                 return resultados;
             }
-            catch (Exception ex)
+            catch
             {
-                ResultadoDto<string, dynamic> resultado = new ResultadoDto<string, dynamic>();
-                resultado.Resultados.Add("Erro", ex.Message);
-                resultado.Resultados.Add("Detalhes de erro", ex.InnerException.Message);
-                return resultado;
+                return null;
             }
         }
 
-        public async Task<ResultadoDto<string, dynamic>> getByIdAsync(int id)
+        public async Task<ResultadoDto> getByIdAsync(int id)
         {
             throw new System.NotImplementedException();
         }
 
-        public async Task<ResultadoDto<string, dynamic>> getByTemaAsync(string tema)
+        public async Task<List<ResultadoDto>> getByTemaAsync(string tema)
         {
             throw new System.NotImplementedException();
         }

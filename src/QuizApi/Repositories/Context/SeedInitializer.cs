@@ -1,15 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using QuizApi.Domain.Entities;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace QuizApi.Repositories.Context
 {
     public static class SeedInitializer
     {
-        public async static Task Initializer(QuizContext context)
+        public static void Initializer(QuizContext context)
         {
-            context.Database.Migrate();
-            if(!await context.perguntas.AnyAsync())
+            //context.Database.Migrate();
+            if(!context.perguntas.Any())
             {
                 Pergunta pergunta = new Pergunta()
                 {
@@ -40,7 +41,7 @@ namespace QuizApi.Repositories.Context
                 pergunta.Alternativas.Add(alternativa2);
                 pergunta.Alternativas.Add(alternativa3);
                 pergunta.Alternativas.Add(alternativa4);
-                await context.perguntas.AddAsync(pergunta);
+                context.perguntas.Add(pergunta);
                 Pergunta pergunta2 = new Pergunta()
                 {
                     Enunciado = @"Para procurar um elemento HTML na DOM em JavaScript nativo, é possível utilizar:"
@@ -70,7 +71,7 @@ namespace QuizApi.Repositories.Context
                 pergunta.Alternativas.Add(alternativa2_2);
                 pergunta.Alternativas.Add(alternativa2_3);
                 pergunta.Alternativas.Add(alternativa2_4);
-                await context.perguntas.AddAsync(pergunta2);
+                context.perguntas.Add(pergunta2);
             }
         }
     }
