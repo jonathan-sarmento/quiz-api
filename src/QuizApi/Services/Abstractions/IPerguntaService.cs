@@ -7,10 +7,10 @@ namespace QuizApi.Services.Abstractions
 {
     public interface IPerguntaService
     {
-        Task<List<ResultadoDto>> getAllAsync();
+        Task<List<PerguntaDto>> getAllAsync();
 
-        Task<ResultadoDto> getByIdAsync(int id);
+        Task<PerguntaDto> getByIdAsync(int id);
 
-        Task<List<ResultadoDto>> getByTemaAsync(string tema);
+        Task<List<PerguntaDto>> getByTemaAsync(string tema);
     }
 }
