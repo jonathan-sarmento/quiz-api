@@ -7,6 +7,11 @@ namespace QuizApi.Repositories.Context
     {
         public QuizContext(DbContextOptions options) : base(options) { }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            
+            base.OnModelCreating(modelBuilder);
+        }
         public DbSet<Usuario> usuarios { get; set; }
         public DbSet<Pergunta> perguntas { get; set; }
         public DbSet<Alternativa> alternativas { get; set; }

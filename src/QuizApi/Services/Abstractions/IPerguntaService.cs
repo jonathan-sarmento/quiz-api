@@ -1,4 +1,4 @@
-﻿using QuizApi.Domain.Dtos;
+using QuizApi.Domain.Dtos;
 using QuizApi.Domain.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
