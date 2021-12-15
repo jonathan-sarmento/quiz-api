@@ -8,7 +8,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using QuizApi.Repositories;
+using QuizApi.Repositories.Abstractions;
 using QuizApi.Repositories.Context;
+using QuizApi.Repositories.Profiles;
+using QuizApi.Services;
+using QuizApi.Services.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +36,13 @@ namespace QuizApi
 
             services.AddControllers();
             services.AddDbContext<QuizContext>(options => options.UseNpgsql(Configuration.GetConnectionString("quiz_api_db")));
+
+            // Adicionar o IoC
+            services.AddScoped<IPerguntaRepository, PerguntaRepository>();
+            services.AddScoped<IPerguntaService, PerguntaService>();
+
+            services.AddAutoMapper(typeof(PerguntaProfile), typeof(AlternativaProfile));
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "QuizApi", Version = "v1" });
@@ -38,7 +50,7 @@ namespace QuizApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, QuizContext _context)
         {
             if (env.IsDevelopment())
             {
@@ -57,6 +69,7 @@ namespace QuizApi
             {
                 endpoints.MapControllers();
             });
+            _context.Database.Migrate();
         }
     }
 }

@@ -4,11 +4,9 @@ namespace QuizApi.Domain.Entities
 {
     public class Usuario : SimpleId
     {
-        public string nome { get; set; }
-
-        public string linkImagem { get; set; }
-
-        public int pontuacao { get; set; }
+        public string Nome { get; set; }
+        public string LinkImagem { get; set; }
+        public int Pontuacao { get; set; }
 
     }
 }
