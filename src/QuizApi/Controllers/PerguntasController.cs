@@ -18,5 +18,15 @@ namespace QuizApi.Controllers
         [HttpGet]
         public async Task<IActionResult> Index() 
             => ApiOk(await _perguntasService.getAllAsync());
+
+        [HttpGet]
+        [Route("/ById/{id}")]
+        public async Task<IActionResult> GetById(int id)
+            => ApiOk(await _perguntasService.getByIdAsync(id));
+
+        [HttpGet]
+        [Route("/ByTheme/{tema}")]
+        public async Task<IActionResult> GetByTheme(string tema)
+            => ApiOk(await _perguntasService.getByTemaAsync(tema));
     }
 }

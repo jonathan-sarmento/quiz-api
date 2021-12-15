@@ -13,5 +13,9 @@ namespace QuizApi.Repositories
        {
            
        }
+
+        public async Task<Pergunta> ObterPergunta(int id)
+            => await SelectAll().Include(x => x.Alternativas)
+                                .FirstOrDefaultAsync(x => Equals(x.Id, id));
     }
 }

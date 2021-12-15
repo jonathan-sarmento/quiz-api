@@ -52,12 +52,28 @@ namespace QuizApi.Services
 
         public async Task<PerguntaDto> getByIdAsync(int id)
         {
-            throw new System.NotImplementedException();
+            var pergunta = await _repository.ObterPergunta(id);
+            if (pergunta == default)
+                return default;
+
+            return _mapper.Map<PerguntaDto>(pergunta);
         }
 
         public async Task<List<PerguntaDto>> getByTemaAsync(string tema)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                List<PerguntaDto> perguntas = await _repository.SelectAll()
+                                                .Include(x => x.Alternativas)
+                                                .Select(x => _mapper.Map<PerguntaDto>(x))
+                                                .ToListAsync();
+
+                return perguntas.Where(p => p.Tema.Contains(tema)).ToList();
+            } 
+            catch(Exception ex) {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
         }
     }
 }
